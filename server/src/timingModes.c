@@ -57,7 +57,7 @@ static void		fn_pushBack(t_list **head, char *date)
 		perror("Err malloc (PB)");
 		exit(EXIT_FAILURE);
 	}
-	tmp->data = fn_split(date,' ');
+	tmp->data = fn_getBreakdown(date);
 	tmp->next = NULL;
 	if (!last)
 	{

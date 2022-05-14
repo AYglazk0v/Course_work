@@ -30,7 +30,8 @@ UTILS	=	utils_0.c\
 			modification_time.c\
 			checkStartDir.c\
 			listOfFiles.c\
-			split.c
+			split.c\
+			getbrekdown.c
 
 ################################################
 

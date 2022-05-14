@@ -2,7 +2,6 @@ from kivymd.app import MDApp
 from kivy.uix.screenmanager import Screen, ScreenManager
 from screens.send import ClientScreen
 
-
 class MainScreen(Screen):
 	pass
 

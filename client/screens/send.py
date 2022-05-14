@@ -1,4 +1,3 @@
-
 from kivy.uix.screenmanager import Screen
 from kivy.lang import Builder
 from kivy.uix.boxlayout import BoxLayout
@@ -16,6 +15,9 @@ import ssl
 import pathlib
 import time
 import os
+
+if platform == 'android':
+	from android.permissions import request_permissions, Permission
 
 Builder.load_string("""
 <ReceiverPropmtContent>:
@@ -72,22 +74,22 @@ Builder.load_string("""
 """)
 
 class Connection:
-	address = None
 	port = 3389
+	address = None
 	socket = None
-	sslSettings = ssl.SSLContext(protocol=ssl.PROTOCOL_TLS_CLIENT);
-	sslSettings.verify_mode = ssl.CERT_REQUIRED;
-	if platform == 'android':
-		ca_path = "/storage/emulated/0/.Steps2Hell/CA/"
-	else:
-		ca_path = "./CA/"
-	sslSettings.load_verify_locations(ca_path + "ca.crt");
-	sslSettings.load_cert_chain(certfile = ca_path + "client.crt", keyfile= ca_path + "client.key");
 
 	def __init__(self, address):
 		self.address = address
 
 	def connect(self):
+		if platform == 'android':
+			ca_path = "/storage/emulated/0/.Steps2Hell/CA/"
+		else:
+			ca_path = "./CA/"
+		self.sslSettings = ssl.SSLContext(protocol=ssl.PROTOCOL_TLS_CLIENT);
+		self.sslSettings.verify_mode = ssl.CERT_REQUIRED;
+		self.sslSettings.load_verify_locations(ca_path + "ca.crt");
+		self.sslSettings.load_cert_chain(certfile = ca_path + "client.crt", keyfile= ca_path + "client.key");
 		s = socket.socket(socket.AF_INET, socket.SOCK_STREAM);
 		self.socket = self.sslSettings.wrap_socket(s, server_hostname="server");
 		s.close();
@@ -131,6 +133,15 @@ class ClientScreen(Screen):
 			exit()
 
 	def on_enter(self):
+		def callback(permission, resault):
+			if all([res for res in resault]):
+				toast("Permission received")
+			else:
+				toast("No access to certificates")
+				exit()
+		if platform == 'android':
+				request_permissions([Permission.READ_EXTERNAL_STORAGE,
+						Permission.WRITE_EXTERNAL_STORAGE], callback)
 		self.receiver_prompt = MDDialog(
 			title="Enter Receiver IP",
 			type="custom",
@@ -143,8 +154,7 @@ class ClientScreen(Screen):
 						self.receiver_prompt.content_cls.ids.receiver_ip.text
 					)
 				)
-			]
-		)
+			])
 		self.receiver_prompt.open()
 
 	def open_filemanager(self, type_sync, *args):

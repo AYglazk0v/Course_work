@@ -4,6 +4,7 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.properties import StringProperty
 from kivy.utils import platform
 
+from kivymd.app import MDApp
 from kivymd.uix.dialog import MDDialog
 from kivymd.uix.button import MDFlatButton
 from kivymd.uix.filemanager import MDFileManager
@@ -27,8 +28,8 @@ Builder.load_string("""
 	height: "50dp"
 	MDTextField:
 		id: receiver_ip
-		hint_text: "Receiver IP"
-		helper_text: "Find the ip of the reciever in the reciever's screen"
+		hint_text: "Server IP"
+		helper_text: "Server IP address displayed on PC"
 		helper_text_mode: 'on_focus'
 
 <ClientScreen>:
@@ -101,6 +102,7 @@ class Connection:
 			toast("Could not perform SSL handshake")
 			self.disconnect()
 			exit()
+			
 		return self.socket
 
 	def disconnect(self):

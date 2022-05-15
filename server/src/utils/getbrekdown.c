@@ -1,4 +1,5 @@
 #include "../../includes/utils.h"
+#include "../../includes/get_next_line_bonus.h"
 
 static char	*fn_strrchr(const char *string, int c)
 {
@@ -58,43 +59,40 @@ static int fn_len_name(char *s)
 	return (0);
 }
 
-static void	fn_strncpy(char *src, char *direc, int len)
-{
-	char	*tmp;
-	
-	tmp = src;
-	if (len)
-	{
-		while(len - 1 > 0 && *tmp)
-		{
-			*direc++ = *tmp++;
-			len--;
-		}
-		*direc = '\0';
-	}
-}
-
 char	**fn_getBreakdown(char *s)
 {
 	char	**dict;
 	int		cnt, len;
 
+	if (!s)
+		return ((void *)0);
 	cnt = fn_cnt_word(s);
+	dict = malloc(sizeof(char*) * (cnt + 1));
 	if (cnt != 0)
 	{
 		len = fn_len_name(s);
-		dict = (char **)malloc(sizeof(char*) * cnt + 1);
-		dict[0] = (char *) malloc(sizeof(char) * len + 1);
-		dict[1] = (char *) malloc(sizeof(char) * 15);
-		fn_strncpy(s, dict[0],len + 1);
-		fn_strncpy(&s[len + 1], dict[1], 15);
+		dict[0] = fn_substr(s,0,len);
+		if (dict[0] == NULL)
+		{
+			fn_cleanDict(dict);
+			return (NULL);
+		}
+		dict[1] = fn_substr(s,len+1, 14);
+		if (dict[1] == NULL)
+		{
+			fn_cleanDict(dict);
+			return (NULL);
+		}
 		if (cnt == 3)
 		{
-			dict[2] = (char *) malloc(sizeof(char) * 4);
-			fn_strncpy(&s[len + 16], dict[2], 4);
+			dict[2] = fn_substr(s, len + 16, 4);
+			if (dict[2] == NULL)
+			{
+				fn_cleanDict(dict);
+				return (NULL);
+			}
 		}
-		dict[cnt] = NULL;
-		return (dict);
 	}
-	return (NULL);
+	dict[cnt] = ((void *)0);
+	return (dict);
 }

@@ -12,7 +12,7 @@
 */
 void	fn_setTimes(char *name, char *times)
 {
-	struct utimbuf	new_times;
+	struct utimbuf	new_times = {0};
 	struct tm		pt_time = {0};
 	time_t			ltmt;
 

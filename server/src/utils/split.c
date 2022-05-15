@@ -73,7 +73,7 @@ char	**fn_split(char *s, char c)
 	while (++i < fn_count_words(s, c))
 	{
 		dict[i] = fn_substr(s, start, fn_strlen2sep(&s[start], c));
-		if (dict == NULL)
+		if (dict[i] == NULL)
 			return (fn_clear(dict));
 		start += fn_strlen2sep(&s[start], c);
 		while (s[start] == c)

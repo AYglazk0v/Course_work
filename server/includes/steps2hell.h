@@ -9,6 +9,7 @@
 
 # define RESET	"\033[0m"
 # define RED	"\033[1;31m"
+// # define YELLOW	"\033[1;31m"
 # define YELLOW	"\033[1;33m"
 # define GREEN	"\033[1;32m"
 
@@ -36,13 +37,13 @@
 
 typedef struct s_info
 {
-	char				*s_dir;
-	char				buff[MAXBUF];
-	int					fd_serv, fd_client, fd;
-	socklen_t			sock_len;
-	SSL_CTX				*ctx;
-	SSL					*ssl;
-	struct	sockaddr_in	server_addr, client_addr;
+	char				*s_dir;	//Строка хранящая стартовую директорию
+	char				buff[MAXBUF]; //Буфер для работы с файлами
+	int					fd_serv, fd_client, fd; // Файловые дескрипторы
+	socklen_t			sock_len; //Беззнаковый целочисленный тип длины не менее 32 бит. 
+	SSL_CTX				*ctx; //Контекст (настройка параметров) для TLS соединения.
+	SSL					*ssl; //Объект типа ssl
+	struct	sockaddr_in	server_addr, client_addr;//Адрес и порт сервера и клиента соответсвенно.
 }	t_info;
 
 void	fn_checkStartDir(t_info *inf);

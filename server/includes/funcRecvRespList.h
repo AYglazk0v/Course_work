@@ -7,22 +7,20 @@
 # include <stdio.h>
 
 typedef struct s_listRec	t_listRec;
-
 struct s_listRec
 {
-	char		*data;
-	char		*time;
-	t_listRec	*next;
-	t_listRec	*prev;
+	char		*data; //Строка для хранения имени файла.
+	char		*time; //Строка для хранения времени, которое нужно будет установить.
+	t_listRec	*next; //Указатель на следующий элемент списка.
+	t_listRec	*prev; //Указатель на предыдущий элемент списка.
 };
-
 typedef struct s_listsRecResp
 {
-	t_listRec	*fwriteRec; //перечень файлов, которые будут отправлены на телефон
-	t_listRec	*freadRec; //перечень файлов, которые будут отправлены на сервер
-	t_listRec	*dwriteRec; //перечень директорий, которые будут отправлены на телефон
-	t_listRec	*dreadRec; //перечень директорий, которые будут отправлены на серве
-	t_listRec	*conflict; //сонфликт файл-директория
+	t_listRec	*fwriteRec; //перечень файлов, которые будут отправлены на телефон.
+	t_listRec	*freadRec; //перечень файлов, которые будут отправлены на сервер.
+	t_listRec	*dwriteRec; //перечень директорий, которые будут отправлены на телефон.
+	t_listRec	*dreadRec; //перечень директорий, которые будут отправлены на сервер.
+	t_listRec	*conflict; //перечень конфликтующих файлов.
 }	t_listsRecResp;
 
 void	fn_pushBackRec(t_listRec **head, char *date, char *time);

@@ -460,7 +460,11 @@ void	fn_connetion(t_info *inf)
 		SSL_free(inf->ssl);
 		close(inf->fd_client);
 		if (sync_mode == '5')
+		{
+			printf(GREEN"\t[+]Client disconnected, shutdown\n"RESET);
 			break;
+		}
+		printf(GREEN"\t[+]The client is disconnected, idle\n"RESET);
 	}
 	close(inf->fd_serv);
 	SSL_CTX_free(inf->ctx);

@@ -28,8 +28,8 @@ static char	*fn_strdup(const char *str)
 }
 
 /*
-#	Функция для получения последнего экзмепляра t_listRec в списке (head).
-#	Возвращает указатель на последний t_listRec, если существует head, иначе NULL.
+	#	Функция для получения последнего экзмепляра t_listRec в списке (head).
+	#	Возвращает указатель на последний t_listRec, если существует head, иначе NULL.
 */
 static t_listRec	*fn_getLast(t_listRec *head)
 {

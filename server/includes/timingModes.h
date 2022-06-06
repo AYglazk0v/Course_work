@@ -8,20 +8,18 @@
 # include "funcRecvRespList.h"
 
 typedef struct s_list		t_list;
-
 struct s_list
 {
-	char	**data;
-	t_list	*next;
-	t_list	*prev;
+	char	**data; //Массив строк, хранящий name, time и поле DIR, если файл -- каталог
+	t_list	*next; // Указатель на следующий элемент списка
+	t_list	*prev; // Указатель на предыдущий элемент списка
 };
-
 typedef struct s_fileConversion
 {
-	t_list	*s_head;
-	t_list	*c_head;
-	int		s_size;
-	int		c_size;
+	t_list	*s_head; //Указатель на первый элемент списка файлов сервера
+	t_list	*c_head; //Указатель на первый элемент списка файлов клиента
+	int		s_size; //Количество элементов в списке сервера
+	int		c_size; //Количество элементов в списке клиента
 }	t_fileConversion;
 
 void	fn_timingModes(t_listsRecResp *recLst, char *s);

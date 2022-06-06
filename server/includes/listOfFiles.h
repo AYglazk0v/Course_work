@@ -19,11 +19,11 @@
 
 typedef struct s_find_f
 {
-	int				fd;
-	struct dirent	**namelist;
-	char			t_buf[15];
-	struct tm		*tm;
-	struct stat		times;
+	int				fd;			//Файловый дескриптор для открытия файла ".s_files".
+	struct dirent	**namelist;	//Структура хранящая перечень файлов в каталоге.
+	char			t_buf[15];	//Строка для записи времени модификации.
+	struct tm		*tm;		//Структура конвертации из stat в char* и послед. записи в файл.
+	struct stat		times;		//Структура для получения информации о файле с помощью stat().
 }t_find_f;
 
 void	fn_writeListDir(void);

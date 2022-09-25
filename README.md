@@ -15,8 +15,8 @@
  5. Разработать клиентское приложение.
 
 ## 📃Стркутура проекта:
-**[CourseTEXT](https://github.com/AYglazk0v/Course_work/tree/master/CourseTEXT)** -- Отчет по курсовой работе написанный на LaTex.
-**[GenerateCert](https://github.com/AYglazk0v/Course_work/tree/master/GenerateCert)** -- Директория содрежащая Makefile для генерации самозаверенных сертификатов.
-**[client](https://github.com/AYglazk0v/Course_work/tree/master/client)** -- Клиентское приложение написанное на python с использованием kivy.
+**[CourseTEXT](https://github.com/AYglazk0v/Course_work/tree/master/CourseTEXT)** -- Отчет по курсовой работе написанный на LaTex.\
+**[GenerateCert](https://github.com/AYglazk0v/Course_work/tree/master/GenerateCert)** -- Директория содрежащая Makefile для генерации самозаверенных сертификатов.\
+**[client](https://github.com/AYglazk0v/Course_work/tree/master/client)** -- Клиентское приложение написанное на python с использованием kivy.\
 **[server](https://github.com/AYglazk0v/Course_work/tree/master/server)** -- Серверное приложение написанное на языке Си.
 
